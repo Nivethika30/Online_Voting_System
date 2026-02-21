@@ -1,0 +1,115 @@
+/* Full page background */
+.register-container {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  height: 100vh;
+
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+
+}
+
+
+/* Register box */
+.register-box {
+
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 10px;
+
+  width: 350px;
+
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+
+  text-align: center;
+
+}
+
+
+/* Title */
+.register-box h2 {
+
+  margin-bottom: 20px;
+
+  color: #2563eb;
+
+}
+
+
+/* Inputs */
+.register-box input,
+.register-box select {
+
+  width: 100%;
+
+  padding: 10px;
+
+  margin-top: 10px;
+
+  border-radius: 5px;
+
+  border: 1px solid #ccc;
+
+  font-size: 14px;
+
+}
+
+
+/* Button */
+.register-box button {
+
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 10px;
+
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 5px;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+}
+
+
+/* Button hover */
+.register-box button:hover {
+
+  background: #1d4ed8;
+
+}
+
+
+/* Message */
+.register-box p {
+
+  margin-top: 15px;
+
+  font-size: 14px;
+
+}
+
+
+/* Login link */
+.register-box a {
+
+  color: #2563eb;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+}
