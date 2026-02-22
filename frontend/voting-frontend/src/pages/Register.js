@@ -16,8 +16,6 @@ const Register = () => {
 
   const [message, setMessage] = useState("");
 
-
-
   const handleChange = (e) => {
 
     const { name, value } = e.target;
@@ -29,11 +27,11 @@ const Register = () => {
 
   };
 
-
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+
+    setMessage("");
 
     try {
 
@@ -41,26 +39,31 @@ const Register = () => {
 
       const msg = response.data;
 
-      setMessage(msg);
-
-
-      // redirect ONLY if success
       if(msg === "User Registered Successfully"){
 
-        navigate("/login");
+        setMessage("Registration Successful! Redirecting to Login...");
+
+        setTimeout(() => {
+
+          navigate("/login");
+
+        }, 1500);
+
+      }
+      else{
+
+        setMessage(msg);
 
       }
 
     }
     catch(error){
 
-      setMessage("Registration Failed");
+      setMessage("Registration Failed. Try again.");
 
     }
 
   };
-
-
 
   return (
 
@@ -70,9 +73,7 @@ const Register = () => {
 
         <h2>User Register</h2>
 
-
         <form onSubmit={handleSubmit}>
-
 
           <input
             type="text"
@@ -83,7 +84,6 @@ const Register = () => {
             required
           />
 
-
           <input
             type="email"
             name="email"
@@ -92,7 +92,6 @@ const Register = () => {
             onChange={handleChange}
             required
           />
-
 
           <input
             type="password"
@@ -103,29 +102,17 @@ const Register = () => {
             required
           />
 
-
           <select
             name="role"
             value={user.role}
             onChange={handleChange}
           >
 
-            <option value="VOTER">
+            <option value="VOTER">Voter</option>
 
-              Voter
-
-            </option>
-
-
-            <option value="CREATOR">
-
-              Creator
-
-            </option>
+            <option value="CREATOR">Creator</option>
 
           </select>
-
-
 
           <button type="submit">
 
@@ -133,14 +120,11 @@ const Register = () => {
 
           </button>
 
-
         </form>
-
-
 
         {message &&
 
-          <p>
+          <p className="message">
 
             {message}
 
@@ -148,11 +132,9 @@ const Register = () => {
 
         }
 
-
-
         <p>
 
-          Already have an account?
+          Already have an account?{" "}
 
           <Link to="/login">
 
@@ -161,7 +143,6 @@ const Register = () => {
           </Link>
 
         </p>
-
 
       </div>
 

@@ -1,0 +1,87 @@
+.hero {
+
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+
+  color: white;
+
+  padding: 60px;
+
+  text-align: center;
+
+}
+
+.hero h1 {
+
+  font-size: 36px;
+
+  margin-bottom: 15px;
+
+}
+
+.hero p {
+
+  width: 60%;
+
+  margin: auto;
+
+  margin-bottom: 20px;
+
+}
+
+.create-btn {
+
+  background: white;
+
+  color: #2563eb;
+
+  padding: 12px 20px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+}
+
+
+
+.poll-section {
+
+  padding: 40px;
+
+}
+
+
+
+.poll-card {
+
+  background: #f8fafc;
+
+  padding: 20px;
+
+  margin-top: 20px;
+
+  border-radius: 8px;
+
+  width: 400px;
+
+}
+
+
+
+.poll-card button {
+
+  margin-top: 10px;
+
+  background: #2563eb;
+
+  color: white;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 5px;
+
+}

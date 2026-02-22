@@ -14,7 +14,6 @@ const Login = () => {
   const [message, setMessage] = useState("");
 
 
-
   const handleChange = (e) => {
 
     setLoginData({
@@ -25,17 +24,17 @@ const Login = () => {
   };
 
 
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+
+    setMessage("");
 
     try {
 
       const response = await loginUser(loginData);
 
       const user = response.data;
-
 
       if (!user) {
 
@@ -44,29 +43,12 @@ const Login = () => {
 
       }
 
-
       localStorage.setItem("user", JSON.stringify(user));
 
-
-      // VERY IMPORTANT FIX
-      const role = user.role.trim().toUpperCase();
-
-
-
-      if (role === "CREATOR") {
-
-        navigate("/creator");
-
-      }
-
-      else if (role === "VOTER") {
-
-        navigate("/voter");
-
-      }
+      // ✅ correct redirect
+      navigate("/dashboard", { replace: true });
 
     }
-
     catch {
 
       setMessage("Login Failed");
@@ -74,7 +56,6 @@ const Login = () => {
     }
 
   };
-
 
 
   return (
@@ -96,7 +77,6 @@ const Login = () => {
             required
           />
 
-
           <input
             type="password"
             name="password"
@@ -105,7 +85,6 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-
 
           <button type="submit">
 

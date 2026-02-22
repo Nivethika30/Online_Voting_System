@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import CreatorDashboard from "./pages/CreatorDashboard";
-import VoterDashboard from "./pages/VoterDashboard";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 
 function App() {
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  const role = user?.role?.trim().toUpperCase();
+  const getUser = () => {
+    return JSON.parse(localStorage.getItem("user"));
+  };
 
   return (
 
@@ -18,32 +18,43 @@ function App() {
 
       <Routes>
 
-        <Route path="/" element={<Login />} />
-
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/register" element={<Register />} />
-
-
+        {/* Login */}
         <Route
-          path="/creator"
+          path="/"
           element={
-            role === "CREATOR"
-              ? <CreatorDashboard />
-              : <Navigate to="/login" />
+            getUser() ? <Navigate to="/dashboard" replace /> : <Login />
           }
         />
 
-
+        {/* Register */}
         <Route
-          path="/voter"
+          path="/register"
           element={
-            role === "VOTER"
-              ? <VoterDashboard />
-              : <Navigate to="/login" />
+            getUser() ? <Navigate to="/dashboard" replace /> : <Register />
           }
         />
 
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            getUser() ? <Dashboard /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Profile */}
+        <Route
+          path="/profile"
+          element={
+            getUser() ? <Profile /> : <Navigate to="/" replace />
+          }
+        />
+
+        {/* Catch invalid routes */}
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
 
       </Routes>
 

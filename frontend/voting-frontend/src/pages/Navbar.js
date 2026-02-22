@@ -13,7 +13,8 @@ function Navbar() {
 
     localStorage.removeItem("user");
 
-    navigate("/login");
+    // use replace so back button won't return dashboard
+    navigate("/", { replace: true });
 
   };
 
@@ -22,7 +23,6 @@ function Navbar() {
 
     <div className="navbar">
 
-
       <h2 className="navbar-logo">
 
         VoteSphere
@@ -30,11 +30,10 @@ function Navbar() {
       </h2>
 
 
-
       <div className="navbar-menu">
 
 
-        <Link to="/" className="navbar-link">
+        <Link to="/dashboard" className="navbar-link">
 
           Home
 
@@ -59,7 +58,6 @@ function Navbar() {
         )}
 
 
-
         {user ? (
 
           <button
@@ -75,7 +73,7 @@ function Navbar() {
 
           <button
             className="navbar-button"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/", { replace: true })}
           >
 
             Login
@@ -86,7 +84,6 @@ function Navbar() {
 
 
       </div>
-
 
     </div>
 

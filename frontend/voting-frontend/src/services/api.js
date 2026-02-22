@@ -7,3 +7,10 @@ export const registerUser = (user) =>
 
 export const loginUser = (loginData) =>
   axios.post(`${BASE_URL}/login`, loginData);
+export const getProfile = (email) => {
+  return axios.get(`${BASE_URL}/profile/${email}`);
+};
+
+export const getAllPolls = () =>
+
+  axios.get(`${BASE_URL}/polls`);

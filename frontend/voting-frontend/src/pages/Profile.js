@@ -1,67 +1,65 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 
-function Profile() {
+const Profile = () => {
 
-const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
-useEffect(() => {
+  useEffect(() => {
 
-const storedUser = JSON.parse(localStorage.getItem("user"));
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
 
-setUser(storedUser);
+    if (!loggedUser) {
+      return;
+    }
 
-}, []);
+    fetch(`http://localhost:8080/api/profile/${loggedUser.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Profile data:", data);
+        setUser(data);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
 
-if (!user) {
-
-return <h2>Please Login</h2>;
-
-}
-
-return (
-
-<div style={{ padding: "20px" }}>
-
-  <h1>User Profile</h1>
-
-  <hr />
-
-  <p><b>Name:</b> {user.name}</p>
-
-  <p><b>Email:</b> {user.email}</p>
-
-  <p><b>Role:</b> {user.role}</p>
+  }, []);
 
 
-  {user.role === "CREATOR" && (
 
-    <div>
-
-      <h3>Created Polls</h3>
-
-      <p>No polls created yet</p>
-
-    </div>
-
-  )}
+  if (!user) {
+    return (
+      <>
+        <Navbar />
+        <h2>Loading...</h2>
+      </>
+    );
+  }
 
 
-  {user.role === "VOTER" && (
 
-    <div>
+  return (
 
-      <h3>Participated Polls</h3>
+    <>
+    
+      <Navbar />
 
-      <p>No polls participated yet</p>
+      <div>
 
-    </div>
+        <h2>My Profile</h2>
 
-  )}
+        <p><b>Name:</b> {user.name}</p>
 
-</div>
+        <p><b>Email:</b> {user.email}</p>
 
-);
+        <p><b>Role:</b> {user.role}</p>
 
-}
+      </div>
+
+    </>
+
+  );
+
+};
 
 export default Profile;
